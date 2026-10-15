@@ -1,6 +1,6 @@
 [project]
 name = "google-hotels-mcp"
-version = "0.1.1"
+version = "0.1.2"
 description = "MCP server for Google Hotels, Google Vacation Rentals and the Google Hotels daily price calendar. Returns live prices from Booking.com, Expedia, Agoda, Vrbo, Airbnb and other OTAs as JSON."
 readme = "README.md"
 license = { text = "MIT" }

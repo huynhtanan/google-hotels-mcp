@@ -59,7 +59,7 @@ def search_hotels(
     max_results: int = 20,
     min_rating: float | None = None,
     min_hotel_class: int | None = None,
-    include_provider_prices: bool = True,
+    include_provider_prices: bool = False,
 ) -> str:
     """Search Google Hotels for a destination between two dates.
 
@@ -68,7 +68,7 @@ def search_hotels(
     photo and the Google /travel/hotels/entity URL. When ``include_provider_prices``
     is true each hotel also gets a ``providers`` list with the rate every booking
     site (Booking.com, Expedia, Agoda, Vrbo, Hotels.com, ...) is charging for
-    the stay.
+    the stay (one extra Apify provider-prices call per hotel, billed per-hotel).
 
     Args:
         query: destination, e.g. ``"hotels in Paris"`` or ``"Hilton near Louvre"``.
@@ -83,7 +83,9 @@ def search_hotels(
         max_results: upper bound on hotels returned.
         min_rating: filter to hotels at or above this guest rating (0-5).
         min_hotel_class: filter to hotels at or above this class (2-5).
-        include_provider_prices: fetch per-provider rates (adds one entity call per hotel).
+        include_provider_prices: fetch per-provider rates. Each hotel priced
+            this way adds one ``provider-prices`` call to the Apify bill.
+            Defaults to ``false`` to keep costs predictable.
     """
     body: dict[str, Any] = {
         "queries": [query],
@@ -93,9 +95,9 @@ def search_hotels(
         "children": children,
         "rooms": rooms,
         "currency": currency,
-        "hl": hl,
-        "gl": gl,
-        "maxResults": max_results,
+        "language": hl,
+        "country": gl,
+        "maxHotelsPerQuery": max_results,
         "includeProviderPrices": include_provider_prices,
     }
     if min_rating is not None:
@@ -110,6 +112,7 @@ def search_hotels(
 def hotel_price_calendar(
     hotel_url: str,
     start_date: str,
+    number_of_dates: int = 90,
     nights: int = 1,
     currency: str = "USD",
     hl: str = "en",
@@ -120,12 +123,13 @@ def hotel_price_calendar(
 ) -> str:
     """Return a daily rate calendar for one Google Hotels property.
 
-    Google serves roughly three months of forward prices in a single calendar.
-    Each item has ``date``, ``price``, ``currency`` and ``available``.
+    By default this returns 90 forward dates (roughly three months), one row
+    per date. Each item has ``date``, ``price``, ``currency`` and ``available``.
 
     Args:
         hotel_url: a Google ``/travel/hotels/entity/<token>`` URL.
         start_date: ISO date ``YYYY-MM-DD`` where the calendar starts.
+        number_of_dates: how many forward dates to price (default 90 = 3 months).
         nights: stay length to price per date (1 = per-night rate).
         currency: ISO 4217 code.
         hl: Google interface language.
@@ -135,12 +139,13 @@ def hotel_price_calendar(
         rooms: number of rooms.
     """
     body = {
-        "hotelUrls": [hotel_url],
+        "hotels": [hotel_url],
         "startDate": start_date,
+        "numberOfDates": number_of_dates,
         "nights": nights,
         "currency": currency,
-        "hl": hl,
-        "gl": gl,
+        "language": hl,
+        "country": gl,
         "adults": adults,
         "children": children,
         "rooms": rooms,
@@ -160,7 +165,7 @@ def search_vacation_rentals(
     hl: str = "en",
     gl: str = "us",
     max_results: int = 20,
-    include_provider_prices: bool = True,
+    include_provider_prices: bool = False,
 ) -> str:
     """Search Google Vacation Rentals (Airbnb / Vrbo / Booking.com) for a stay.
 
@@ -169,7 +174,7 @@ def search_vacation_rentals(
     Google /travel/vacation-rentals/entity URL. When
     ``include_provider_prices`` is true each rental also gets a ``providers``
     list with the price every listing site (Airbnb, Vrbo, Booking.com) is
-    charging.
+    charging (one extra provider-prices call per rental, billed per-rental).
 
     Args:
         query: destination, e.g. ``"vacation rentals in Lisbon"``.
@@ -181,7 +186,9 @@ def search_vacation_rentals(
         hl: Google interface language.
         gl: Google country code.
         max_results: upper bound on rentals returned.
-        include_provider_prices: fetch per-provider rates.
+        include_provider_prices: fetch per-provider rates. Each rental priced
+            this way adds one ``provider-prices`` call to the Apify bill.
+            Defaults to ``false`` to keep costs predictable.
     """
     body = {
         "queries": [query],
@@ -190,9 +197,9 @@ def search_vacation_rentals(
         "adults": adults,
         "children": children,
         "currency": currency,
-        "hl": hl,
-        "gl": gl,
-        "maxResults": max_results,
+        "language": hl,
+        "country": gl,
+        "maxHotelsPerQuery": max_results,
         "includeProviderPrices": include_provider_prices,
     }
     items = _run_sync(RENTALS_ACTOR, body)
