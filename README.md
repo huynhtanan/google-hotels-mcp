@@ -145,3 +145,10 @@ MIT.
 
 <!-- mcp-name: io.github.huynhtanan/google-hotels-mcp -->
 
+## Tutorials
+
+Deep-dive write-up on dev.to:
+
+- [Add Google Hotels to Claude Desktop as an MCP server (2-minute setup)](https://dev.to/huynhtanan/add-google-hotels-to-claude-desktop-as-an-mcp-server-2-minute-setup-1m00)
+
+Full series (all four actors): [Apify + Python: scrapers, trackers, and Claude Desktop](https://dev.to/huynhtanan/series/45271).
