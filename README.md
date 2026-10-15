@@ -1,5 +1,7 @@
 # Google Hotels MCP
 
+> **New blog post:** [Add Google Hotels to Claude Desktop as an MCP server](https://dev.to/huynhtanan/add-google-hotels-to-claude-desktop-as-an-mcp-server-2-minute-setup-1m00) — 2-minute install walk-through for Claude Desktop and Claude Code.
+
 [![Glama MCP server](https://glama.ai/mcp/servers/huynhtanan/google-hotels-mcp/badge)](https://glama.ai/mcp/servers/huynhtanan/google-hotels-mcp)
 
 A Model Context Protocol (MCP) server that lets Claude, Cursor, Windsurf and any other MCP client fetch **live Google Hotels** and **Google Vacation Rentals** prices with the rate every booking site is charging (Booking.com, Expedia, Agoda, Vrbo, Airbnb, Hotels.com, …), plus a **3-month daily price calendar** for any single property. Everything comes back as JSON — no Google account, no scraping on your laptop, no Puppeteer.
