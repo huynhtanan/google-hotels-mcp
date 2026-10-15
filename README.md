@@ -49,6 +49,47 @@ If you prefer `pipx` or `pip`, install `google-hotels-mcp` and run `google-hotel
 
 > *"Compare vacation rentals in Lisbon vs Porto, 2 adults, 2026-11-15 to 2026-11-22, 3+ bedrooms, with the Airbnb vs Vrbo rate for each."*
 
+## Sample response
+
+`search_hotels(query="hotels in Lisbon", check_in="2026-11-10", check_out="2026-11-13", adults=2, currency="EUR")` — one of 40 items (trimmed):
+
+```json
+{
+  "name": "Patio São Vicente Guest Houses",
+  "position": 1,
+  "rating": 4.9,
+  "reviewsCount": 349,
+  "ratingDistribution": {"1": 0, "2": 0, "3": 3, "4": 16, "5": 330},
+  "hotelClass": 4,
+  "hotelClassText": "4-star hotel",
+  "pricePerNight": 109,
+  "pricePerNightText": "€109",
+  "totalPrice": 372.1,
+  "totalBeforeTaxes": 328.48,
+  "currency": "EUR",
+  "checkIn": "2026-11-10",
+  "checkOut": "2026-11-13",
+  "nights": 3,
+  "checkInTime": "3:00 PM",
+  "checkOutTime": "11:00 AM",
+  "latitude": 38.7155846,
+  "longitude": -9.1280593,
+  "nearbyPlaces": [
+    {"name": "National Pantheon", "travelTime": "6 min"},
+    {"name": "Voz Operário", "travelTime": "2 min"}
+  ],
+  "reviewTopics": [
+    {"topic": "Location", "mentions": 88, "positive": 84, "negative": 2, "positiveShare": 0.977}
+  ],
+  "amenityIds": [29, 2, 54, 15, 12, 1, 11, 25],
+  "website": "https://www.patiosaovicente.com/",
+  "mapsUrl": "https://www.google.com/maps?cid=1945275941691630548",
+  "googleHotelsUrl": "https://www.google.com/travel/hotels/entity/ChkIn4CU6sjxgJ1YGg0vZy8xMWY0XzdqenhqEAE?hl=en&gl=us"
+}
+```
+
+Set `include_provider_prices=true` and the hotel also gets a `providers` array with the price Booking.com, Expedia, Agoda, Hotels.com, Vrbo and 10+ other OTAs are each charging for the same stay.
+
 ## Pricing
 
 | Call | Cost |
@@ -96,12 +137,3 @@ MIT.
 
 <!-- mcp-name: io.github.huynhtanan/google-hotels-mcp -->
 
-
-
-## See also
-
-More repos from this account:
-
-- [google-hotels-api](https://github.com/huynhtanan/google-hotels-api) - Python and Node.js examples for Google Hotels and Vacation Rentals
-- [amazon-bestsellers-tracker](https://github.com/huynhtanan/amazon-bestsellers-tracker) - Daily Amazon Best Sellers rank, price and ASIN tracking in 17 country stores
-- [walmart-deals-tracker](https://github.com/huynhtanan/walmart-deals-tracker) - Daily Walmart Rollback deal tracking with Python and SQLite
