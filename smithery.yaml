@@ -24,7 +24,7 @@ startCommand:
   commandFunction: |-
     (config) => ({
       command: "uvx",
-      args: ["google-hotels-mcp"],
+      args: ["--from", "git+https://github.com/huynhtanan/google-hotels-mcp.git", "google-hotels-mcp"],
       env: { APIFY_TOKEN: config.apifyToken }
     })
 tools:
