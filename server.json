@@ -1,0 +1,30 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.huynhtanan/google-hotels-mcp",
+  "title": "Google Hotels MCP",
+  "description": "Live Google Hotels and Google Vacation Rentals prices with per-OTA rates (Booking.com, Expedia, Agoda, Vrbo, Airbnb) and a 3-month daily price calendar for any property, as JSON. Backed by three open-source Apify actors.",
+  "repository": {
+    "url": "https://github.com/huynhtanan/google-hotels-mcp",
+    "source": "github"
+  },
+  "version": "0.1.0",
+  "packages": [
+    {
+      "registryType": "pypi",
+      "identifier": "google-hotels-mcp",
+      "version": "0.1.0",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "APIFY_TOKEN",
+          "description": "Apify API token. Create a free one at https://console.apify.com/account/integrations (pay-as-you-go, no card to start).",
+          "isRequired": true,
+          "isSecret": true,
+          "format": "string"
+        }
+      ]
+    }
+  ]
+}
