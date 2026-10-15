@@ -93,3 +93,6 @@ A full-city hotel search (20 hotels with provider rates) is around **$0.08**. Th
 ## License
 
 MIT.
+
+<!-- mcp-name: io.github.huynhtanan/google-hotels-mcp -->
+
