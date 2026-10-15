@@ -1,0 +1,36 @@
+name: google-hotels-mcp
+displayName: Google Hotels MCP
+description: >-
+  Live Google Hotels and Google Vacation Rentals prices with provider rates
+  (Booking.com, Expedia, Agoda, Vrbo, Airbnb) and a 3-month daily price
+  calendar, as JSON. Backed by three open-source Apify actors on the Apify
+  Store ($0.002 / hotel, $0.0015 / daily price, $0.002 / rental).
+icon: https://apify.com/favicon.ico
+license: MIT
+version: 0.1.0
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    required: [apifyToken]
+    properties:
+      apifyToken:
+        type: string
+        title: Apify API token
+        description: >-
+          Create a free one at
+          https://console.apify.com/account/integrations. Pay-as-you-go, no
+          card required to start.
+  commandFunction: |-
+    (config) => ({
+      command: "uvx",
+      args: ["google-hotels-mcp"],
+      env: { APIFY_TOKEN: config.apifyToken }
+    })
+tools:
+  - name: search_hotels
+    description: Live Google Hotels search by destination + dates with per-provider rates.
+  - name: hotel_price_calendar
+    description: 3-month daily rate calendar for one hotel.
+  - name: search_vacation_rentals
+    description: Google Vacation Rentals (Airbnb / Vrbo / Booking.com) search.
