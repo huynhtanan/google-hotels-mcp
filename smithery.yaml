@@ -7,7 +7,7 @@ description: >-
   Store ($0.002 / hotel, $0.0015 / daily price, $0.002 / rental).
 icon: https://apify.com/favicon.ico
 license: MIT
-version: 0.1.0
+version: 0.1.1
 startCommand:
   type: stdio
   configSchema:
@@ -24,7 +24,7 @@ startCommand:
   commandFunction: |-
     (config) => ({
       command: "uvx",
-      args: ["--from", "git+https://github.com/huynhtanan/google-hotels-mcp.git", "google-hotels-mcp"],
+      args: ["--from", "git+https://github.com/huynhtanan/google-hotels-mcp.git@v0.1.1", "google-hotels-mcp"],
       env: { APIFY_TOKEN: config.apifyToken }
     })
 tools:
