@@ -1,5 +1,7 @@
 # Google Hotels MCP
 
+[![Glama MCP server](https://glama.ai/mcp/servers/huynhtanan/google-hotels-mcp/badge)](https://glama.ai/mcp/servers/huynhtanan/google-hotels-mcp)
+
 A Model Context Protocol (MCP) server that lets Claude, Cursor, Windsurf and any other MCP client fetch **live Google Hotels** and **Google Vacation Rentals** prices with the rate every booking site is charging (Booking.com, Expedia, Agoda, Vrbo, Airbnb, Hotels.com, …), plus a **3-month daily price calendar** for any single property. Everything comes back as JSON — no Google account, no scraping on your laptop, no Puppeteer.
 
 Backed by three open-source actors on the Apify Store. You bring your own Apify token; the actors are pay-as-you-go on the Apify Free plan at **$0.002 / hotel**, **$0.0015 / daily price** and **$0.002 / vacation rental**. Apify ships $5 of free compute every month and no card is required to start.
