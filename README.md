@@ -96,3 +96,12 @@ MIT.
 
 <!-- mcp-name: io.github.huynhtanan/google-hotels-mcp -->
 
+
+
+## See also
+
+More repos from this account:
+
+- [google-hotels-api](https://github.com/huynhtanan/google-hotels-api) - Python and Node.js examples for Google Hotels and Vacation Rentals
+- [amazon-bestsellers-tracker](https://github.com/huynhtanan/amazon-bestsellers-tracker) - Daily Amazon Best Sellers rank, price and ASIN tracking in 17 country stores
+- [walmart-deals-tracker](https://github.com/huynhtanan/walmart-deals-tracker) - Daily Walmart Rollback deal tracking with Python and SQLite
