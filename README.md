@@ -150,6 +150,7 @@ MIT.
 Runnable, self-contained scripts that use this MCP server (and the underlying Apify actors) for real workflows.
 
 - [`examples/rate_parity`](examples/rate_parity) — Daily OTA rate-parity watcher: snapshots per-OTA prices into SQLite and prints hotels where Booking/Expedia/Agoda disagree by ≥ 3% on the same stay date.
+- [`examples/cheapest_week`](examples/cheapest_week) — Find the cheapest 7-night window for one hotel in the next 60 days by pulling the Google Hotels price calendar and sorting every rolling window by total price.
 
 ## Tutorials
 
