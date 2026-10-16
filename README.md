@@ -145,6 +145,12 @@ MIT.
 
 <!-- mcp-name: io.github.huynhtanan/google-hotels-mcp -->
 
+## Examples
+
+Runnable, self-contained scripts that use this MCP server (and the underlying Apify actors) for real workflows.
+
+- [`examples/rate_parity`](examples/rate_parity) — Daily OTA rate-parity watcher: snapshots per-OTA prices into SQLite and prints hotels where Booking/Expedia/Agoda disagree by ≥ 3% on the same stay date.
+
 ## Tutorials
 
 Deep-dive write-up on dev.to:
