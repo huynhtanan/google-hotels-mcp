@@ -31,7 +31,7 @@ Create a free account at <https://console.apify.com/account/integrations> and co
   "mcpServers": {
     "google-hotels": {
       "command": "uvx",
-      "args": ["--from", "git+https://github.com/huynhtanan/google-hotels-mcp.git", "google-hotels-mcp"],
+      "args": ["--from", "git+https://github.com/huynhtanan/google-hotels-mcp.git@v0.1.2", "google-hotels-mcp"],
       "env": { "APIFY_TOKEN": "apify_api_..." }
     }
   }
