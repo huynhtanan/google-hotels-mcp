@@ -1,0 +1,38 @@
+# Google Hotels MCP
+
+> A Model Context Protocol (MCP) server that gives any MCP client (Claude Desktop, Claude Code, Cursor, Windsurf) live Google Hotels and Google Vacation Rentals prices, including per-OTA rates (Booking.com, Expedia, Agoda, Vrbo, Airbnb, Hotels.com) and a 3-month daily price calendar for any property. Pay-as-you-go on the Apify Free plan; no scraping on the user's machine.
+
+Author: huynhtanan. Open-source MCP server, calls three paid Apify actors (disclosed below). Repo: https://github.com/huynhtanan/google-hotels-mcp.
+
+## Tools
+
+- [search_hotels](https://github.com/huynhtanan/google-hotels-mcp/blob/main/google_hotels_mcp/server.py): Google Hotels search for a destination + check-in/check-out dates. Returns name, rating, review count, nightly and total price, hotel class, coordinates, amenities, hero photo, Google URL, and optionally the price every OTA is charging ($0.002 / hotel + $0.002 / provider-prices row).
+- [hotel_price_calendar](https://github.com/huynhtanan/google-hotels-mcp/blob/main/google_hotels_mcp/server.py): 3-month daily rate calendar for one hotel URL. One row per date with price, currency, availability ($0.0015 / daily price).
+- [search_vacation_rentals](https://github.com/huynhtanan/google-hotels-mcp/blob/main/google_hotels_mcp/server.py): Google Vacation Rentals search (Airbnb, Vrbo, Booking.com inventory). Same shape as hotels plus bedrooms, bathrooms, host info ($0.002 / rental + $0.002 / provider-prices).
+
+## Install
+
+- [README quick start](https://github.com/huynhtanan/google-hotels-mcp#quick-start): three-step install (Apify token, uvx config block, restart MCP client).
+- Pinned release: `uvx --from "git+https://github.com/huynhtanan/google-hotels-mcp.git@v0.1.2" google-hotels-mcp`.
+- Environment: `APIFY_TOKEN` (required). Get one at https://console.apify.com/account/integrations — no card required.
+
+## Examples
+
+- [examples/rate_parity](https://github.com/huynhtanan/google-hotels-mcp/tree/main/examples/rate_parity): snapshot 20 Paris hotels across 30 forward check-in dates, write to SQLite, surface OTA rate-parity drift ≥ 3%. One-file CLI, no framework.
+- [examples/cheapest_week](https://github.com/huynhtanan/google-hotels-mcp/tree/main/examples/cheapest_week): find the cheapest consecutive week in a hotel's 3-month price calendar. Verified: Ritz Paris 60 dates EUR saved 26.4% (€15,454 vs €21,010 peak).
+
+## Underlying Apify actors (paid, open-source)
+
+- [google-hotels-scraper](https://apify.com/zet46/google-hotels-scraper): $0.002 / hotel + $0.002 / provider-prices row. Used by `search_hotels`.
+- [google-hotels-price-calendar](https://apify.com/zet46/google-hotels-price-calendar): $0.0015 / daily price. Used by `hotel_price_calendar`.
+- [google-vacation-rentals-scraper](https://apify.com/zet46/google-vacation-rentals-scraper): $0.002 / rental + $0.002 / provider-prices row. Used by `search_vacation_rentals`.
+
+## Blog posts
+
+- [How to get Google Hotels prices for any dates with Python](https://dev.to/huynhtanan/how-to-get-google-hotels-prices-for-any-dates-with-python-and-see-which-booking-site-is-cheapest-1aod)
+- [Daily price tracking for competitor hotels with Python and SQLite](https://dev.to/huynhtanan/daily-price-tracking-for-competitor-hotels-with-python-and-sqlite-2nda)
+- [Add Google Hotels to Claude Desktop as an MCP server (2-minute setup)](https://dev.to/huynhtanan/add-google-hotels-to-claude-desktop-as-an-mcp-server-2-minute-setup-1m00)
+
+## Disclosure
+
+The three Apify actors above are paid pay-per-result services written by the same author (zet46 on Apify, huynhtanan on GitHub). The MCP server itself is open source (MIT). Apify's free tier includes about $5 of compute each month — enough for small daily snapshots — before any charge.
