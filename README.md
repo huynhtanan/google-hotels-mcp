@@ -23,7 +23,7 @@ Create a free account at <https://console.apify.com/account/integrations> and co
 
 ### 2. Add the server to your MCP client
 
-> **Note:** this server is new and not yet on PyPI. Until it is, install directly from the GitHub repo with `uvx --from "git+https://github.com/huynhtanan/google-hotels-mcp.git@v0.1.1" google-hotels-mcp`. Pinned to the tagged release so later main-branch changes do not break existing users. Once google-hotels-mcp lands on PyPI you can drop the --from prefix.
+> **Note:** this server is new and not yet on PyPI. Until it is, install directly from the GitHub repo with `uvx --from "git+https://github.com/huynhtanan/google-hotels-mcp.git@v0.1.2" google-hotels-mcp`. Pinned to the tagged release so later main-branch changes do not break existing users. Once google-hotels-mcp lands on PyPI you can drop the --from prefix.
 
 **Claude Desktop** — edit `claude_desktop_config.json`:
 ```json
@@ -40,7 +40,7 @@ Create a free account at <https://console.apify.com/account/integrations> and co
 
 **Claude Code**:
 ```bash
-claude mcp add google-hotels -- uvx --from "git+https://github.com/huynhtanan/google-hotels-mcp.git@v0.1.1" google-hotels-mcp --env APIFY_TOKEN=apify_api_...
+claude mcp add google-hotels -- uvx --from "git+https://github.com/huynhtanan/google-hotels-mcp.git@v0.1.2" google-hotels-mcp --env APIFY_TOKEN=apify_api_...
 ```
 
 **Cline** — in VS Code: open the Cline MCP Servers panel → Add server → Command, paste the same `uvx --from git+...` command and set `APIFY_TOKEN` in env.
